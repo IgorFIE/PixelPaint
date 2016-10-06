@@ -11,17 +11,20 @@ public class Field {
 
     public Field(Pane pane) {
 
-        System.out.println(pane.getPrefHeight());
+        int paneXsize = Converter.convertToFieldSize((int)pane.getPrefWidth());
+        int paneYsize = Converter.convertToFieldSize((int)pane.getPrefHeight());
 
-        this.cubeField = new Cube[Converter.convertToFieldSize((int)pane.getPrefWidth())][Converter.convertToFieldSize((int)pane.getPrefHeight())];
+        this.cubeField = new Cube[paneXsize][paneYsize];
         createField(pane);
     }
 
     private void createField(Pane pane){
         for(int x = 0; x < cubeField.length;x++){
             for(int y = 0; y < cubeField[x].length;y++){
+
                 this.cubeField[x][y] = new Cube(x,y);
                 pane.getChildren().add(cubeField[x][y].getRect());
+
             }
         }
     }
