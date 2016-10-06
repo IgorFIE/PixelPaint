@@ -3,6 +3,7 @@ package sample;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import sample.Field.Convert;
@@ -25,7 +26,13 @@ public class Controller implements Initializable{
         myRoot.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                field.draw(Convert.toFieldSize((int)event.getX()),Convert.toFieldSize((int)event.getY()));
+
+                if(event.getButton() == MouseButton.PRIMARY) {
+                    field.draw(Convert.toFieldSize((int) event.getX()), Convert.toFieldSize((int) event.getY()));
+
+                } else if(event.getButton() == MouseButton.SECONDARY){
+                    field.clean(Convert.toFieldSize((int) event.getX()), Convert.toFieldSize((int) event.getY()));
+                }
             }
         });
     }
