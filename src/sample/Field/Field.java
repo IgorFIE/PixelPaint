@@ -1,4 +1,4 @@
-package sample;
+package sample.Field;
 
 import javafx.scene.layout.Pane;
 
@@ -11,8 +11,8 @@ public class Field {
 
     public Field(Pane pane) {
 
-        int paneXsize = Converter.convertToFieldSize((int)pane.getPrefWidth());
-        int paneYsize = Converter.convertToFieldSize((int)pane.getPrefHeight());
+        int paneXsize = Convert.toFieldSize((int)pane.getPrefWidth());
+        int paneYsize = Convert.toFieldSize((int)pane.getPrefHeight());
 
         this.cubeField = new Cube[paneXsize][paneYsize];
         createField(pane);

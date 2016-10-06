@@ -1,4 +1,4 @@
-package sample;
+package sample.Field;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -16,8 +16,8 @@ public class Cube {
     public Cube(int x, int y) {
         this.x = x;
         this.y = y;
-        rect = new Rectangle(Converter.convertToCellSize(x),Converter.convertToCellSize(y),
-                Converter.CELL_SIZE,Converter.CELL_SIZE);
+        rect = new Rectangle(Convert.toCellSize(x), Convert.toCellSize(y),
+                Convert.CELL_SIZE, Convert.CELL_SIZE);
         rect.setStroke(Color.BLACK);
         rect.setFill(Color.WHITE);
     }
