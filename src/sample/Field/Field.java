@@ -1,6 +1,7 @@
 package sample.Field;
 
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 /**
  * Created by pacifist on 06-10-2016.
@@ -44,8 +45,8 @@ public class Field {
      * @param x
      * @param y
      */
-    public void draw(int x, int y){
-        this.cubeField[x][y].draw();
+    public void draw(int x, int y , Color color){
+        this.cubeField[x][y].draw(color);
     }
 
     /**

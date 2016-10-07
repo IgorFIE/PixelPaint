@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import sample.Field.Convert;
 import sample.Field.Field;
 import sample.Field.UserPointer;
@@ -16,6 +17,8 @@ public class Controller implements Initializable{
 
     private Field field;
     private UserPointer pointer;
+    private final Color[] colors = {Color.BLACK,Color.RED,Color.BLUE,Color.GREEN,Color.YELLOW};
+    private int color;
 
     @FXML
     Pane myRoot;
@@ -24,7 +27,8 @@ public class Controller implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
 
         field = new Field(myRoot);
-        pointer = new UserPointer();
+
+        pointer = new UserPointer(colors[color]);
         myRoot.getChildren().add(pointer.getRect());
 
         mouseControl();
@@ -40,44 +44,72 @@ public class Controller implements Initializable{
      *
      */
     private void mouseControl(){
+        mouseMovementHandler();
+        mouseClickHandler();
+        mouseDragHandler();
+        mouseScrollHandler();
+    }
 
-        //Makes the Pointer follow the Mouse
-        myRoot.addEventHandler(MouseEvent.MOUSE_MOVED, event -> {
+    /**
+     * handler for Pointer follow mouse
+     */
+    private void mouseMovementHandler(){
+        myRoot.addEventHandler(MouseEvent.ANY, this::mousePointer);
+    }
 
-            pointer.draw(Convert.toFieldSize((int) event.getX()), Convert.toFieldSize((int) event.getY()));
+    /**
+     * Handler for mouse clicks
+     */
+    private void mouseClickHandler(){
 
-        });
-
-        //Mouse Primary and Secondary Buttons
         myRoot.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 
             if(event.getButton() == MouseButton.PRIMARY) {
                 primaryClick(event);
 
             } else if(event.getButton() == MouseButton.SECONDARY){
-                secundaryClick(event);
+                secondaryClick(event);
             }
 
         });
+    }
 
-        //Mouse Continuous Painting
+    /**
+     * Handler for mouse Drag options
+     */
+    private void mouseDragHandler(){
+
         myRoot.addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
 
             if(event.getButton() == MouseButton.PRIMARY) {
                 primaryClick(event);
 
             } else if(event.getButton() == MouseButton.SECONDARY){
-                secundaryClick(event);
+                secondaryClick(event);
             }
-
         });
     }
-    
-    private void primaryClick(MouseEvent event){
-        field.draw(Convert.toFieldSize((int) event.getX()), Convert.toFieldSize((int) event.getY()));
+
+    /**
+     * Scroll Handler
+     * Changes the color of the pointer
+     */
+    private void mouseScrollHandler(){
+        myRoot.addEventHandler(ScrollEvent.SCROLL, event -> {
+            color++;
+            if (!(color < colors.length)) color = 0;
+        });
     }
 
-    private void secundaryClick(MouseEvent event){
+    private void mousePointer(MouseEvent event){
+        pointer.draw(Convert.toFieldSize((int) event.getX()), Convert.toFieldSize((int) event.getY()),colors[color]);
+    }
+
+    private void primaryClick(MouseEvent event){
+        field.draw(Convert.toFieldSize((int) event.getX()), Convert.toFieldSize((int) event.getY()), colors[color]);
+    }
+
+    private void secondaryClick(MouseEvent event){
         field.clean(Convert.toFieldSize((int) event.getX()), Convert.toFieldSize((int) event.getY()));
     }
 

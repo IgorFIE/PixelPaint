@@ -13,10 +13,10 @@ public class UserPointer {
     /**
      * User Pointer Constructor
      */
-    public UserPointer() {
+    public UserPointer(Color color) {
         rect = new Rectangle(0,0,Convert.CELL_SIZE,Convert.CELL_SIZE);
         rect.setStroke(Color.YELLOW);
-        rect.setFill(Color.BLACK);
+        rect.setFill(color);
     }
 
     /**
@@ -25,9 +25,10 @@ public class UserPointer {
      * @param x
      * @param y
      */
-    public void draw(int x, int y){
+    public void draw(int x, int y , Color color){
         rect.setX(x*Convert.CELL_SIZE);
         rect.setY(y*Convert.CELL_SIZE);
+        rect.setFill(color);
     }
 
     public Rectangle getRect() {

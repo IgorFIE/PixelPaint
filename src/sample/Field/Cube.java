@@ -31,8 +31,8 @@ public class Cube {
     /**
      * Fill the inside of the cube
      */
-    public void draw(){
-        rect.setFill(Color.BLACK);
+    public void draw(Color color){
+        rect.setFill(color);
     }
 
     /**
