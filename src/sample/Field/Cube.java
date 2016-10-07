@@ -13,6 +13,12 @@ public class Cube {
 
     private Rectangle rect;
 
+    /**
+     * Creates a Cube in the respective x,y position
+     *
+     * @param x
+     * @param y
+     */
     public Cube(int x, int y) {
         this.x = x;
         this.y = y;
@@ -22,10 +28,16 @@ public class Cube {
         rect.setFill(Color.WHITE);
     }
 
+    /**
+     * Fill the inside of the cube
+     */
     public void draw(){
         rect.setFill(Color.BLACK);
     }
 
+    /**
+     * Clean the inside of the cube
+     */
     public void clean(){
         rect.setFill(Color.WHITE);
     }

@@ -3,7 +3,6 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import sample.Field.Convert;
@@ -18,9 +17,6 @@ public class Controller implements Initializable{
     private Field field;
     private UserPointer pointer;
 
-    private int lastX;
-    private int lastY;
-
     @FXML
     Pane myRoot;
 
@@ -34,15 +30,21 @@ public class Controller implements Initializable{
         mouseControl();
     }
 
+    /**
+     * Mouse controllers
+     *
+     * Mouse Pointer follows mouse Position x,y
+     *
+     * Primary - Draw
+     * Secondary - Clean
+     *
+     */
     private void mouseControl(){
 
         //Makes the Pointer follow the Mouse
         myRoot.addEventHandler(MouseEvent.MOUSE_MOVED, event -> {
 
             pointer.draw(Convert.toFieldSize((int) event.getX()), Convert.toFieldSize((int) event.getY()));
-
-            lastX = Convert.toFieldSize((int) event.getX());
-            lastY = Convert.toFieldSize((int) event.getY());
 
         });
 
@@ -70,7 +72,7 @@ public class Controller implements Initializable{
 
         });
     }
-
+    
     private void primaryClick(MouseEvent event){
         field.draw(Convert.toFieldSize((int) event.getX()), Convert.toFieldSize((int) event.getY()));
     }

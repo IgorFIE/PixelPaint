@@ -9,6 +9,12 @@ public class Field {
 
     private Cube[][] cubeField;
 
+    /**
+     * Field Constructor receives a Pane to receive the Rectangles
+     * Creates a Field with the correspondent size
+     *
+     * @param pane
+     */
     public Field(Pane pane) {
 
         int paneXsize = Convert.toFieldSize((int)pane.getPrefWidth());
@@ -18,6 +24,10 @@ public class Field {
         createField(pane);
     }
 
+    /**
+     * Creates the Field and add the Rectangles to the Pane
+     * @param pane
+     */
     private void createField(Pane pane){
         for(int x = 0; x < cubeField.length;x++){
             for(int y = 0; y < cubeField[x].length;y++){
@@ -29,10 +39,20 @@ public class Field {
         }
     }
 
+    /**
+     * Pick the cube in the x,y position and fill it
+     * @param x
+     * @param y
+     */
     public void draw(int x, int y){
         this.cubeField[x][y].draw();
     }
 
+    /**
+     * Pick the cube in the x,y position and clean it
+     * @param x
+     * @param y
+     */
     public void clean(int x, int y){
         this.cubeField[x][y].clean();
     }
