@@ -46,7 +46,7 @@ public class Field {
      * @param y
      */
     public void draw(int x, int y , Color color){
-        this.cubeField[x][y].draw(color);
+        if(x < cubeField.length && y < cubeField[0].length && x > -1 && y > -1) cubeField[x][y].draw(color);
     }
 
     /**
@@ -55,6 +55,6 @@ public class Field {
      * @param y
      */
     public void clean(int x, int y){
-        this.cubeField[x][y].clean();
+        if(x < cubeField.length && y < cubeField[0].length && x > -1 && y > -1) cubeField[x][y].clean();
     }
 }
